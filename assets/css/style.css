@@ -1,0 +1,101 @@
+/* Adjusting heading styles */
+h2, h2 {
+  font-size: calc(1.325rem + 1.9vw);
+  text-align-last: center;
+}
+
+/* Styling for the search history section */
+.search-history {
+  max-width: 332px;    
+  margin: 31px -83px 16px -47px;   
+  padding: 0;          
+  display: list-item;  
+}
+
+/* Styling for the list group */
+#historyList {
+  margin: 0;            
+  padding: 0;          
+}
+
+/* Resetting margins for various container classes */
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  margin-left: 0;
+}
+
+/* Styling for the card */
+.card {
+  margin-left: 483px;
+  margin-top: -539px;
+}
+
+/* Styling for the city name */
+#cityName {
+  margin-top: -15px;
+  margin-right: 51px;
+  line-height: 48px;
+  margin-left: 27px;
+  padding: 0px 7px 19px 32px;
+}
+
+/* Styling for the input group */
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 21px -37px;
+}
+
+/* Styling for the list group */
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+  margin-top: 500px;
+}
+
+/* Adjusting margin for the container */
+.container {
+  margin-top: 20px;
+}
+
+/* Adjusting width for the card */
+.card {
+  width: 100%;
+}
+
+/* Styling for the weather icon */
+#weatherIcon {
+  width: 50px;
+  height: 50px;
+}
+
+/* Styling for the forecast section */
+.forecast {
+  margin-top: 20px;
+}
+
+/* Media query for smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .forecast .list-group-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .card {
+    margin: 20px auto; /* Center the card and add some spacing on smaller screens */
+    font-size: 16px;
+  }
+
+  .search-history {
+    max-width: 100%; /* Adjust width for small screens */
+  }
+}
