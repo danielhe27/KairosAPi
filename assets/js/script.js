@@ -58,11 +58,49 @@ function getApi(city) {
   // Hide the weather icon until data is loaded
   weatherIconElement.src = iconUrl;
   weatherIconElement.alt = currentDay.weather[0].description;
-  
+
   // Skip the current day and take all available data
   const forecast = data.list.slice(1, data.list.length); 
   // Display 5-day forecast
   displayForecast(forecast);
 }
 
- 
+function displayForecast(forecast) {
+      // Clear existing forecast content
+      forecastContainer.innerHTML = '';
+      
+      // Create a div to hold the list group items horizontally
+      const forecastListContainer = document.createElement('div');
+      forecastListContainer.classList.add('list-group', 'd-flex', 'flex-row');
+      forecastListContainer.id = 'forecastList';
+      
+      // Display weather details for each day
+      for (let i = 0; i < forecast.length; i += 8) {
+        const day = forecast[i];
+        const dateString = formatForecastDate(day.dt);
+        
+        // Create a list group item for each day
+        const listItem = document.createElement('div');
+        listItem.classList.add('list-group-item', 'text-center');
+        
+        // Add content to the list item, including the icon
+        const temperature = day.main.temp.toFixed(2);
+        const wind = day.wind.speed.toFixed(2);
+        const humidity = day.main.humidity;
+        const iconCode = day.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+        
+        listItem.innerHTML = `
+        <p>${dateString}</p>
+        <img src="${iconUrl}" alt="Weather Icon" style="width: 50px; height: 50px;"> <!-- Adjust size here -->
+        <p>Temperature: ${temperature} °C</p>
+        <p>Wind: ${wind} MPH</p>
+        <p>Humidity: ${humidity}%</p>
+        `;
+        
+        forecastListContainer.appendChild(listItem);
+      }
+       // Append the forecast list container to the forecast container
+       forecastContainer.appendChild(forecastListContainer);
+      
+      }
