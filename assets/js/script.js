@@ -33,5 +33,36 @@ function getApi(city) {
      console.error('Error fetching data:', error);
    });
  }
- 
+
+ function displayCurrentWeather(data) {
+  // Update the UI with current weather information
+  cityNameElement.textContent = data.city.name;
+  
+  // Display current day's weather
+  const currentDay = data.list[0]; 
+  const currentDate = new Date(currentDay.dt * 1000);
+  const currentDateString = currentDate.toLocaleDateString();
+  
+  // Display the date
+  cityNameElement.textContent = `Weather in ${data.city.name} on ${currentDateString}`;
+  
+  // Display weather details with variables that i need but can be added more if is necesary
+  temperatureElement.textContent = `Temperature: ${currentDay.main.temp.toFixed(2)} °C`;
+  windElement.textContent = `Wind: ${currentDay.wind.speed.toFixed(2)} MPH`;
+  humidityElement.textContent = `Humidity: ${currentDay.main.humidity}%`;
+  
+  // Display the weather icon
+  const iconCode = currentDay.weather[0].icon;
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+  
+  // Hide the weather icon until data is loaded
+  weatherIconElement.src = iconUrl;
+  weatherIconElement.alt = currentDay.weather[0].description;
+  
+  // Skip the current day and take all available data
+  const forecast = data.list.slice(1, data.list.length); 
+  // Display 5-day forecast
+  displayForecast(forecast);
+}
+
  
