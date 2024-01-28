@@ -38,7 +38,33 @@
       </div>
     </div>
 
+<!-- class for search history and a list for the same  with li elements -->
+    <div class="search-history">
+      <h3>Search History</h3>
+      <div id="historyList" class="list-group"></div>
+    </div>
     
+    <!-- card for a Weather Details Section so i display temperature wind and humitidy -->
+    <div class="current-weather text-center">
+      <div class="hidden">
+        <div class="card" style="width: 63vw; height: 25vw;margin: -658px 4px 0 311px;display: block;font-size: 26px;">
+          <div class="card-body">
+            <h2 id="cityName"></h2>
+            <img id="weatherIcon" style="width: 50px;height: 50px;margin: -19px 0px 0px 0px;">
+            <p class="card-text" id="temperature"></p>
+            <p class="card-text" id="wind"></p>
+            <p class="card-text" id="humidity"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- here the forecast section whe whill display a forecast for the following 5 days -->
+  <div class="forecast text-center" id="forecastContainer"
+    style="margin: -448px 1px 0px 358px;display: flex;justify-content: space-around;"></div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
