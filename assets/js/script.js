@@ -11,6 +11,45 @@ const weatherIconElement = document.getElementById('weatherIcon');
 const historyListElement = document.getElementById('historyList');
 const forecastContainer = document.getElementById('forecastContainer');
 
+// Event listener for the Get Weather button
+var getWeatherButton = document.getElementById("btnGet");
+getWeatherButton.addEventListener("click", function () {
+  const city = cityInput.value.trim(); // Trim whitespace
+  getApi(city);
+  console.log("Get Weather button clicked!");
+});
+
+function displayCurrentWeather(data) {
+ // Update the UI with current weather information
+ cityNameElement.textContent = data.city.name;
+ 
+ // Display current day's weather
+ const currentDay = data.list[0]; 
+ const currentDate = new Date(currentDay.dt * 1000);
+ const currentDateString = currentDate.toLocaleDateString();
+ 
+ // Display the date
+ cityNameElement.textContent = `Weather in ${data.city.name} on ${currentDateString}`;
+ 
+ // Display weather details with variables that i need but can be added more if is necesary
+ temperatureElement.textContent = `Temperature: ${currentDay.main.temp.toFixed(2)} °C`;
+ windElement.textContent = `Wind: ${currentDay.wind.speed.toFixed(2)} MPH`;
+ humidityElement.textContent = `Humidity: ${currentDay.main.humidity}%`;
+ 
+ // Display the weather icon
+ const iconCode = currentDay.weather[0].icon;
+ const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+ 
+ // Hide the weather icon until data is loaded
+ weatherIconElement.src = iconUrl;
+ weatherIconElement.alt = currentDay.weather[0].description;
+
+ // Skip the current day and take all available data
+ const forecast = data.list.slice(1, data.list.length); 
+ // Display 5-day forecast
+ displayForecast(forecast);
+}
+
 function getApi(city) {
   if (!city) return;
 
@@ -34,36 +73,6 @@ function getApi(city) {
    });
  }
 
- function displayCurrentWeather(data) {
-  // Update the UI with current weather information
-  cityNameElement.textContent = data.city.name;
-  
-  // Display current day's weather
-  const currentDay = data.list[0]; 
-  const currentDate = new Date(currentDay.dt * 1000);
-  const currentDateString = currentDate.toLocaleDateString();
-  
-  // Display the date
-  cityNameElement.textContent = `Weather in ${data.city.name} on ${currentDateString}`;
-  
-  // Display weather details with variables that i need but can be added more if is necesary
-  temperatureElement.textContent = `Temperature: ${currentDay.main.temp.toFixed(2)} °C`;
-  windElement.textContent = `Wind: ${currentDay.wind.speed.toFixed(2)} MPH`;
-  humidityElement.textContent = `Humidity: ${currentDay.main.humidity}%`;
-  
-  // Display the weather icon
-  const iconCode = currentDay.weather[0].icon;
-  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
-  
-  // Hide the weather icon until data is loaded
-  weatherIconElement.src = iconUrl;
-  weatherIconElement.alt = currentDay.weather[0].description;
-
-  // Skip the current day and take all available data
-  const forecast = data.list.slice(1, data.list.length); 
-  // Display 5-day forecast
-  displayForecast(forecast);
-}
 
 function displayForecast(forecast) {
       // Clear existing forecast content
@@ -75,7 +84,7 @@ function displayForecast(forecast) {
       forecastListContainer.id = 'forecastList';
       
       // Display weather details for each day
-      for (let i = 0; i < forecast.length; i += 8) {
+      for (let i = 1; i < forecast.length; i += 8) {
         const day = forecast[i];
         const dateString = formatForecastDate(day.dt);
         
@@ -105,6 +114,7 @@ function displayForecast(forecast) {
       
       }
 // this function it will save the data  from the API into variables and then create HTML elements based on that data
+
       function saveToHistory(city) {
         // Retrieve existing history from local storage
         const history = JSON.parse(localStorage.getItem('weatherHistory')) || [];
@@ -142,14 +152,6 @@ function displayForecast(forecast) {
  //display of history from local storage
  const initialHistory = JSON.parse(localStorage.getItem('weatherHistory')) || [];
  displayHistory(initialHistory);
- 
- // Event listener for the Get Weather button
- var getWeatherButton = document.getElementById("btnGet");
- getWeatherButton.addEventListener("click", function () {
-   const city = cityInput.value.trim(); // Trim whitespace
-   getApi(city);
-   console.log("Get Weather button clicked!");
- });
  
  // Function to format forecast date
  function formatForecastDate(timestamp) {
