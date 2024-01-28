@@ -104,3 +104,37 @@ function displayForecast(forecast) {
        forecastContainer.appendChild(forecastListContainer);
       
       }
+// this function it will save the data  from the API into variables and then create HTML elements based on that data
+      function saveToHistory(city) {
+        // Retrieve existing history from local storage
+        const history = JSON.parse(localStorage.getItem('weatherHistory')) || [];
+        
+        // Add the new city to the history
+        if (!history.includes(city)) {
+          history.push(city);
+          
+          // Save updated history to local storage
+          localStorage.setItem('weatherHistory', JSON.stringify(history));
+          
+          // Update the displayed history
+          displayHistory(history);
+        }
+      }
+
+      function displayHistory(history) {
+        // Clear the existing history
+        historyListElement.innerHTML = '';
+        
+        // Display each city in the history
+        history.forEach(city => {
+          const listItem = document.createElement('li');
+          listItem.classList.add('list-group-item');
+          listItem.textContent = city;
+          listItem.addEventListener('click', function () {
+            // When a city in the history is clicked, fetch its weather
+            cityInput.value = city;
+            getApi(city);
+          });
+          historyListElement.appendChild(listItem);
+        });
+      }
