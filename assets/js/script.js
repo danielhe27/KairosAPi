@@ -138,3 +138,24 @@ function displayForecast(forecast) {
           historyListElement.appendChild(listItem);
         });
       }
+
+ //display of history from local storage
+ const initialHistory = JSON.parse(localStorage.getItem('weatherHistory')) || [];
+ displayHistory(initialHistory);
+ 
+ // Event listener for the Get Weather button
+ var getWeatherButton = document.getElementById("btnGet");
+ getWeatherButton.addEventListener("click", function () {
+   const city = cityInput.value.trim(); // Trim whitespace
+   getApi(city);
+   console.log("Get Weather button clicked!");
+ });
+ 
+ // Function to format forecast date
+ function formatForecastDate(timestamp) {
+   const date = new Date(timestamp * 1000);
+   const options = { weekday: 'short', month: 'short', day: 'numeric' };
+   return date.toLocaleDateString(undefined, options);
+ }
+
+
