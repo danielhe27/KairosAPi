@@ -161,3 +161,21 @@ function displayForecast(forecast) {
  }
 
 
+ function displayHistory(history) {
+  // Clear the existing history
+  historyListElement.innerHTML = '';
+
+  // Display each city in the history
+  history.forEach(city => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('list-group-item');
+    listItem.textContent = city;
+
+    // Add click event listener to fetch weather when clicked
+    listItem.addEventListener('click', function () {
+      getApi(city);
+    });
+
+    historyListElement.appendChild(listItem);
+  });
+}
