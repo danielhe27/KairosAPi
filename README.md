@@ -17,7 +17,7 @@ Kairos is a simple weather application that provides current weather details and
 
 ## Demo
 
-Include a link or GIF to a demo of your application.
+
 
 ## Getting Started
 

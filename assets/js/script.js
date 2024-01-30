@@ -179,3 +179,4 @@ function displayForecast(forecast) {
     historyListElement.appendChild(listItem);
   });
 }
+
