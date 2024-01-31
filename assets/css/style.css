@@ -18,23 +18,6 @@ h2, h2 {
   padding: 0;          
 }
 
-/* Resetting margins for various container classes */
-.container,
-.container-fluid,
-.container-lg,
-.container-md,
-.container-sm,
-.container-xl,
-.container-xxl {
-  margin-left: 0;
-}
-
-/* Styling for the card */
-.card {
-  margin-left: 483px;
-  margin-top: -539px;
-}
-
 /* Styling for the city name */
 #cityName {
   margin-top: -15px;
@@ -52,15 +35,6 @@ h2, h2 {
   margin: 21px -37px;
 }
 
-/* Styling for the list group */
-.list-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-  border-radius: 0.25rem;
-  margin-top: 500px;
-}
 
 /* Adjusting margin for the container */
 .container {
@@ -81,21 +55,4 @@ h2, h2 {
 /* Styling for the forecast section */
 .forecast {
   margin-top: 20px;
-}
-
-/* Media query for smaller screens (max-width: 768px) */
-@media (max-width: 768px) {
-  .forecast .list-group-item {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
-  .card {
-    margin: 20px auto; /* Center the card and add some spacing on smaller screens */
-    font-size: 16px;
-  }
-
-  .search-history {
-    max-width: 100%; /* Adjust width for small screens */
-  }
 }

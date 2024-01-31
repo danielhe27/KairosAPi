@@ -101,7 +101,7 @@ function displayForecast(forecast) {
         
         listItem.innerHTML = `
         <p>${dateString}</p>
-        <img src="${iconUrl}" alt="Weather Icon" style="width: 50px; height: 50px;"> <!-- Adjust size here -->
+        <img src="${iconUrl}" alt="Weather Icon" style="width: 50px; height: 50px;"> 
         <p>Temperature: ${temperature} °C</p>
         <p>Wind: ${wind} MPH</p>
         <p>Humidity: ${humidity}%</p>
